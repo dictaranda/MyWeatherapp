@@ -58,7 +58,7 @@ function nowPosition(position) {
 navigator.geolocation.getCurrentPosition(nowPosition);
 function currentTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
-  let icon = document.querySelector("#forecasticon");
+  let icon = document.querySelector("#icon");
   let h2 = document.querySelector("h2");
   h2.innerHTML = `It is currently ${temperature}° in ${response.data.name}`;
   icon.setAttribute(
