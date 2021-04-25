@@ -62,7 +62,7 @@ function currentTemperature(response) {
   let h2 = document.querySelector("h2");
   h2.innerHTML = `It is currently ${temperature}° in ${response.data.name}`;
   forecasticon.setAttribute(
-    "forecasticon",
+    "icon",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
