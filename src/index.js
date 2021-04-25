@@ -58,11 +58,11 @@ function nowPosition(position) {
 navigator.geolocation.getCurrentPosition(nowPosition);
 function currentTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
-  let forecasticon = document.querySelector("#forecasticon");
+  let icon = document.querySelector("#forecasticon");
   let h2 = document.querySelector("h2");
   h2.innerHTML = `It is currently ${temperature}° in ${response.data.name}`;
-  forecasticon.setAttribute(
-    "icon",
+  icon.setAttribute(
+    "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
