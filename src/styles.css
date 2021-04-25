@@ -27,8 +27,12 @@ h1 {
 }
 
 .forecasticon {
-  font-size: 50px;
+  font-size: 15px;
 }
 .forecasttemp {
+  font-size: 12px;
+}
+
+.forecastday {
   font-size: 12px;
 }
