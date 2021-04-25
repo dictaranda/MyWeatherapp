@@ -63,7 +63,7 @@ function currentTemperature(response) {
   h2.innerHTML = `It is currently ${temperature}° in ${response.data.name}`;
   forecasticon.setAttribute(
     "forecasticon",
-    "http://openweathermap.org/img/wn/10d@2x.png"
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
 function convertTemp(event) {
