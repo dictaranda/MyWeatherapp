@@ -33,37 +33,30 @@ function findCity(city) {
   let apiKey = "d0b5d0467c5bf8ec3ccfc78906d36cf8";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   // axios.get(apiUrl).then(showWeatherCondition);
-  $.get(apiUrl, function (data) {
-    let h2 = document.querySelector("#temperature");
-    h2.innerHTML = data.main.temp + "&deg;";
-    //console.log(jsn.main.temp);
-  });
-}
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  $.get(apiUrl, showWeatherCondition);
 }
 function nowPosition(position) {
+  let apiKey = "d0b5d0467c5bf8ec3ccfc78906d36cf8";
   let lat = position.coords.latitude;
   let log = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${log}&units=metric&appid=${apiKey}`;
-  let apiKey = "d0b5d0467c5bf8ec3ccfc78906d36cf8";
   //axios.get(url).then(showWeather);
-  $.get(url, function (data) {
-    let h2 = document.querySelector("#temperature");
-    h2.innerHTML = data.main.temp + "&deg;";
-  });
+  $.get(url, showWeatherCondition);
 }
-navigator.geolocation.getCurrentPosition(nowPosition);
-function currentTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
+function getPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(nowPosition);
+}
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", getPosition);
+function showWeatherCondition(response) {
+  let temperature = Math.round(response.main.temp);
   let icon = document.querySelector("#icon");
-  let h2 = document.querySelector("h2");
-  h2.innerHTML = `It is currently ${temperature}° in ${response.data.name}`;
-  icon.innerHTML(
+  let h2 = document.querySelector("#temperature");
+  h2.innerHTML = temperature + "&deg;";
+  icon.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
   );
 }
 function convertTemp(event) {
